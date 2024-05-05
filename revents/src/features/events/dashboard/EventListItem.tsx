@@ -1,9 +1,11 @@
 import { SegmentGroup,Segment, ItemGroup, Item, Icon, List, Button } from "semantic-ui-react"
 import EventListAttendee from "./EventListAttendee"
 import { AppEvent } from "../../../app/types/events"
+import { Link } from "react-router-dom"
 
 type Props ={
   event:AppEvent
+ 
 }
 
 export default function EventListItem({event}:Props) {
@@ -16,7 +18,7 @@ export default function EventListItem({event}:Props) {
 <ItemGroup>
 
 <Item>
-  <Item.Image size="tiny" circular src={event.hostPhotoURL}/>
+  <Item.Image size="tiny" circular src={event.hostPhotoURL || "/user.png"}/>
 
   <Item.Content>
 
@@ -53,7 +55,8 @@ export default function EventListItem({event}:Props) {
  {event.description}
 </span>
 
-<Button color="teal" floated="right" content='view'></Button>
+<Button  color="red" floated="right" content='Delete'></Button>
+<Button  as={Link} to={`/events/ ${event.id}`} color="teal" floated="right" content='View'></Button>
 </Segment>
 
        </SegmentGroup>
